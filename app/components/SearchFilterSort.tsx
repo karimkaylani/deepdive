@@ -1,5 +1,5 @@
-import { Chip, Group, Stack, TextInput, Text, Radio, Select, Title, Button } from '@mantine/core'
-import { IconSearch } from '@tabler/icons-react'
+import { Chip, Group, Stack, TextInput, Radio, Select, Title, Button, Collapse } from '@mantine/core'
+import { IconSearch, IconArrowDown, IconArrowUp } from '@tabler/icons-react'
 import { useContext, useState } from 'react'
 import { FilterContext } from './Home'
 import { RecentFilter, RuntimeFilter, SortAttribute, SortOrder, secondaryColor } from '../globals';
@@ -21,6 +21,9 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
 
     const [selectedGenres, setSelectedGenres] = useState<string[]>([])
     const [expanded, expandedHandlers] = useDisclosure(false);
+
+    const [filterOpened, { toggle: toggleFilter }] = useDisclosure(false)
+    const [sortOpened, { toggle: toggleSort }] = useDisclosure(false)
 
     const handleSearchTextChange = (query: string) => {
         setFilters({...filters, search: query})
@@ -54,12 +57,12 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
 
   return (
     <Stack align='center' w='100%'>
-        <TextInput size='lg' radius='md' w='75%'
+        <TextInput size='md' radius='md' w='75%'
             leftSection={icon}
             placeholder="Search video title, creator, etc."
             onChange={(event) => handleSearchTextChange(event.currentTarget.value)}
         />
-        <Stack align='center'>
+        <Stack align='center' gap='lg'>
             <Group>
             <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
                 {allGenres.slice(0, expanded ? allGenres.length : 8).map((genre) => 
@@ -70,7 +73,11 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
             {allGenres.length > collapsedGenreCount && <Chip variant='outline' checked={false} onClick={expanded ? expandedHandlers.close : expandedHandlers.open}>{expanded ? "Collapse" : "+"}</Chip>}
             </Group>
 
-            <Title fw={500} order={3}>FILTER</Title>
+            <Group onClick={toggleFilter} style={{cursor: 'pointer', userSelect: 'none'}}>
+                <Title fw={500} order={3}>FILTER</Title>
+                {filterOpened ? <IconArrowUp/> : <IconArrowDown/>}
+            </Group>
+            <Collapse in={filterOpened} >
             <Group justify='center' gap='xl'>
                 <Radio.Group
                     name="runtimeFilter"
@@ -98,7 +105,13 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                     </Stack>
                 </Radio.Group>
             </Group>
-            <Title fw={500} order={3}>SORT</Title>
+            </Collapse>
+
+            <Group onClick={toggleSort} style={{cursor: 'pointer', userSelect: 'none'}}>
+                <Title fw={500} order={3}>SORT</Title>
+                {sortOpened ? <IconArrowUp/> : <IconArrowDown/>}
+            </Group>
+            <Collapse in={sortOpened}>
             <Group>
                 <Select
                     placeholder="Sort by"
@@ -117,6 +130,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                     </Stack>
                 </Radio.Group>
             </Group>
+            </Collapse>
         </Stack>
     </Stack>
   )

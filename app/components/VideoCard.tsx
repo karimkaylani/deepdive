@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { Video, secondaryColor } from '../globals';
-import { Badge, Card, Image as MantineImage, Group, Text, Loader, Center } from '@mantine/core';
+import { Badge, Card, Image as MantineImage, Group, Text, Loader, Center, Anchor } from '@mantine/core';
 
 export interface VideoCardProps {
     video: Video;
@@ -26,6 +26,7 @@ const VideoCard = ({video}: VideoCardProps) => {
   }, [])
 
   return (
+  <Anchor href={video.url} target='_blank'>
   <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
         {loading ? 
@@ -36,7 +37,6 @@ const VideoCard = ({video}: VideoCardProps) => {
         <MantineImage
           src={thumbnail}
           height={300}
-          onClick={() => window.open(video.url, '_blank')}
           alt={`${video.title} thumbnail`}
         />}
       </Card.Section>
@@ -56,6 +56,7 @@ const VideoCard = ({video}: VideoCardProps) => {
         {video.length} | {video.date}
       </Text>
     </Card>
+    </Anchor>
   )
 }
 
