@@ -3,6 +3,7 @@ import { IconSearch } from '@tabler/icons-react'
 import { useContext, useState } from 'react'
 import { FilterContext } from './Home'
 import { RecentFilter, RuntimeFilter, SortAttribute, SortOrder, secondaryColor } from '../globals';
+import { useDisclosure } from '@mantine/hooks';
 
 export interface SearchFilterSortProps {
     allGenres: string[];
@@ -10,12 +11,16 @@ export interface SearchFilterSortProps {
 
 const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
     const icon = <IconSearch/>
+    const collapsedGenreCount = 8
     const [runtimeValue, setRuntimeValue] = useState<RuntimeFilter>(RuntimeFilter.Any)
     const [recentValue, setRecentValue] = useState<RecentFilter>(RecentFilter.Any)
 
     const [sortValue, setSortValue] = useState<SortAttribute>(SortAttribute.DateRecommended)
     const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.Descending)
     const {filters: {filters, setFilters}, sort: {sort, setSort}} = useContext(FilterContext);
+
+    const [selectedGenres, setSelectedGenres] = useState<string[]>([])
+    const [expanded, expandedHandlers] = useDisclosure(false);
 
     const handleSearchTextChange = (query: string) => {
         setFilters({...filters, search: query})
@@ -41,6 +46,11 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
         setSort({sort: sortValue, order: value})
     }
 
+    const handleSelectedGenre = (value: string[]) => {
+        setSelectedGenres(value)
+        setFilters({...filters, genres: value})
+    }
+
 
   return (
     <Stack align='center' w='100%'>
@@ -50,20 +60,21 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
             onChange={(event) => handleSearchTextChange(event.currentTarget.value)}
         />
         <Stack align='center'>
-            <Title fw={500} order={3}>FILTER</Title>
             <Group>
-                {allGenres.map((genre) => 
-                    <Chip c={secondaryColor} key={genre} onChange={() => 
-                        setFilters({...filters, 
-                            genres: filters.genres.includes(genre) ? filters.genres.filter((g) => g !== genre) : [...filters.genres, genre]})}>
+            <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
+                {allGenres.slice(0, expanded ? allGenres.length : 8).map((genre) => 
+                    <Chip c={secondaryColor} key={genre} value={genre}>
                         {genre}
                     </Chip>)}
+            </Chip.Group>
+            {allGenres.length > collapsedGenreCount && <Chip variant='outline' checked={false} onClick={expanded ? expandedHandlers.close : expandedHandlers.open}>{expanded ? "Collapse" : "+"}</Chip>}
             </Group>
 
-            <Group justify='center'>
+            <Title fw={500} order={3}>FILTER</Title>
+            <Group justify='center' gap='xl'>
                 <Radio.Group
                     name="runtimeFilter"
-                    label="Runtime"
+                    label="RUNTIME"
                     value={runtimeValue}
                     onChange={handleRuntimeChange}>
                     <Stack className='mt-3'>
@@ -76,7 +87,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
 
                 <Radio.Group
                     name="recentFilter"
-                    label="Video Release Date"
+                    label="VIDEO RELEASE DATE"
                     value={recentValue}
                     onChange={handleRecentChange}>
                     <Stack className='mt-3'>

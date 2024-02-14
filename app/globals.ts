@@ -37,7 +37,7 @@ export enum SortAttribute {
 
 export enum RuntimeFilter {
     Any = "Any",
-    Short = "Short (20 minutes or less)",
+    Short = "Short (< 20 minutes)",
     Medium = "Medium (20-45 minutes)",
     Long = "Long (45 minutes +)"
 }
