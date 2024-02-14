@@ -59,7 +59,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
 
   return (
     <Stack align='center' w='100%'>
-        <TextInput size='md' radius='md' w='75%'
+        <TextInput size='md' radius='md' w={{base: '100%', sm: '80%', md: '60%'}}
             leftSection={icon}
             placeholder="Search video title, creator, etc."
             onChange={(event) => handleSearchTextChange(event.currentTarget.value)}
