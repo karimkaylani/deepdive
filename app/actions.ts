@@ -2,8 +2,10 @@ import {google} from 'googleapis';
 import { Video } from './globals';
 import { unstable_cache } from 'next/cache';
 
+export const getCachedVideos = unstable_cache(getVideos, ['videos'], {revalidate: 300});
 
 export async function getVideos() {
+    console.log('test')
     const credential = JSON.parse(
         Buffer.from(process.env.GOOGLE_SERVICE_KEY, "base64").toString()
     );
