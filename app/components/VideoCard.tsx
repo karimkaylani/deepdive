@@ -26,7 +26,7 @@ const VideoCard = ({video}: VideoCardProps) => {
   }, [])
 
   return (
-  <Anchor href={video.url} target='_blank'>
+  <Anchor href={video.url} target='_blank' c={secondaryColor}>
   <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
         {loading ? 
