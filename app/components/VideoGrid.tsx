@@ -34,9 +34,6 @@ const shouldShowVideo = (vid: Video, filters: Filters) => {
       return false;
     }
   }
-  if (filters.yearsRecommended.length > 0 && !filters.yearsRecommended.includes(parseInt(vid.yearRecommended))) {
-    return false;
-  }
   const lengthInMinutes = runtimeToMinutes(vid.length);
   if (filters.runtime !== RuntimeFilter.Any) {
     if (filters.runtime === RuntimeFilter.Short && lengthInMinutes > 20) {
@@ -114,13 +111,13 @@ function VideoGrid({videos}: VideoGridProps) {
           next={() => setLastLoadedVideoIndex(lastLoadedVideoIndex + videoLoadInterval)}
           hasMore={sortedVideos.length > currentVideos.length}
           loader={null}>
-      <SimpleGrid cols={{ base: 2, xs: 3, sm: 3, lg: 4 }}>
-          {currentVideos.map((video) => 
-              <FlipMove key='flip'>
-                <VideoCard key={video.title} video={video}/>
-              </FlipMove>
-          )}
-      </SimpleGrid>
+        <SimpleGrid cols={{ base: 2, xs: 3, sm: 3, lg: 4 }}>
+            {currentVideos.map((video) => 
+                <FlipMove key='flip'>
+                  <VideoCard key={video.title} video={video}/>
+                </FlipMove>
+            )}
+        </SimpleGrid>
       </InfiniteScroll>
     </Stack>
   )

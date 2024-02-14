@@ -1,4 +1,4 @@
-import { Chip, Group, Stack, TextInput, Radio, Select, Title, Button, Collapse } from '@mantine/core'
+import { Chip, Group, Stack, TextInput, Radio, Select, Title, Button, Collapse, Badge } from '@mantine/core'
 import { IconSearch, IconArrowDown, IconArrowUp } from '@tabler/icons-react'
 import { useContext, useState } from 'react'
 import { FilterContext } from './Home'
@@ -25,6 +25,8 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
     const [filterOpened, { toggle: toggleFilter }] = useDisclosure(false)
     const [sortOpened, { toggle: toggleSort }] = useDisclosure(false)
 
+    const [numFilters, setNumFilters] = useState(0)
+
     const handleSearchTextChange = (query: string) => {
         setFilters({...filters, search: query})
     }
@@ -32,11 +34,23 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
     const handleRuntimeChange = (value: RuntimeFilter) => {
         setRuntimeValue(value)
         setFilters({...filters, runtime: value})
+        if (value !== RuntimeFilter.Any && runtimeValue === RuntimeFilter.Any) {
+            setNumFilters(numFilters + 1)
+        }
+        if (value === RuntimeFilter.Any && runtimeValue !== RuntimeFilter.Any) {
+            setNumFilters(numFilters - 1)
+        }
     }
 
     const handleRecentChange = (value: RecentFilter) => {
         setRecentValue(value)
         setFilters({...filters, recent: value})
+        if (value !== RecentFilter.Any && recentValue === RecentFilter.Any) {
+            setNumFilters(numFilters + 1)
+        }
+        if (value === RecentFilter.Any && recentValue !== RecentFilter.Any) {
+            setNumFilters(numFilters - 1)
+        }
     }
 
     const handleSortAttributeChange = (value: SortAttribute) => {
@@ -77,6 +91,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
 
             <Group onClick={toggleFilter} style={{cursor: 'pointer', userSelect: 'none'}}>
                 <Title fw={500} order={3}>FILTER</Title>
+                {numFilters > 0 && <Badge color={secondaryColor}>{numFilters}</Badge>}
                 {filterOpened ? <IconArrowUp/> : <IconArrowDown/>}
             </Group>
             <Collapse in={filterOpened} >

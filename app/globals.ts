@@ -12,7 +12,6 @@ export interface Video {
 export interface Filters {
     search: string,
     genres: string[],
-    yearsRecommended: number[],
     runtime: RuntimeFilter,
     recent: RecentFilter
 }
@@ -28,11 +27,11 @@ export enum SortOrder {
 }
 
 export enum SortAttribute {
-    Title = "Title",
-    Creator = "Creator",
+    DateRecommended = "Date Recommended",
     Runtime = "Runtime",
     DatePosted = "Date Posted",
-    DateRecommended = "Date Recommended"
+    Creator = "Creator",
+    Title = "Title"
 }
 
 export enum RuntimeFilter {
