@@ -82,7 +82,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
             <Group justify='center'>
             <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
                 {genresList.slice(0, expanded ? allGenres.length : 8).map((genre) => 
-                    <Chip c={secondaryColor} key={genre} value={genre}>
+                    <Chip color={secondaryColor} key={genre} value={genre}>
                         {genre}
                     </Chip>)}
             </Chip.Group>
@@ -93,7 +93,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
 
             <Group onClick={toggleFilter} style={{cursor: 'pointer', userSelect: 'none'}}>
                 <Title fw={500} order={3}>FILTER</Title>
-                {numFilters > 0 && <Badge color={secondaryColor}>{numFilters}</Badge>}
+                {numFilters > 0 && <Badge size='lg' color={secondaryColor}>{numFilters}</Badge>}
                 {filterOpened ? <IconArrowUp/> : <IconArrowDown/>}
             </Group>
             <Collapse in={filterOpened} >
@@ -104,10 +104,10 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                     value={runtimeValue}
                     onChange={handleRuntimeChange}>
                     <Stack className='mt-3'>
-                        <Radio value={RuntimeFilter.Any} label={RuntimeFilter.Any}/>
-                        <Radio value={RuntimeFilter.Short} label={RuntimeFilter.Short}/>
-                        <Radio value={RuntimeFilter.Medium} label={RuntimeFilter.Medium}/>
-                        <Radio value={RuntimeFilter.Long} label={RuntimeFilter.Long}/>
+                        <Radio value={RuntimeFilter.Any} label={RuntimeFilter.Any} color={secondaryColor}/>
+                        <Radio value={RuntimeFilter.Short} label={RuntimeFilter.Short} color={secondaryColor}/>
+                        <Radio value={RuntimeFilter.Medium} label={RuntimeFilter.Medium} color={secondaryColor}/>
+                        <Radio value={RuntimeFilter.Long} label={RuntimeFilter.Long} color={secondaryColor}/>
                     </Stack>
                 </Radio.Group>
 
@@ -117,10 +117,10 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                     value={recentValue}
                     onChange={handleRecentChange}>
                     <Stack className='mt-3'>
-                        <Radio value={RecentFilter.Any} label={RecentFilter.Any}/>
-                        <Radio value={RecentFilter.Short} label={RecentFilter.Short}/>
-                        <Radio value={RecentFilter.Medium} label={RecentFilter.Medium}/>
-                        <Radio value={RecentFilter.Long} label={RecentFilter.Long}/>
+                        <Radio value={RecentFilter.Any} label={RecentFilter.Any} color={secondaryColor}/>
+                        <Radio value={RecentFilter.Short} label={RecentFilter.Short} color={secondaryColor}/>
+                        <Radio value={RecentFilter.Medium} label={RecentFilter.Medium} color={secondaryColor}/>
+                        <Radio value={RecentFilter.Long} label={RecentFilter.Long} color={secondaryColor}/>
                     </Stack>
                 </Radio.Group>
             </Group>
@@ -144,8 +144,8 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                     value={sortOrder}
                     onChange={handleSortOrderChange}>
                     <Stack className='mt-3'>
-                        <Radio value={SortOrder.Ascending} label={SortOrder.Ascending}/>
-                        <Radio value={SortOrder.Descending} label={SortOrder.Descending}/>
+                        <Radio value={SortOrder.Ascending} label={SortOrder.Ascending} color={secondaryColor}/>
+                        <Radio value={SortOrder.Descending} label={SortOrder.Descending} color={secondaryColor}/>
                     </Stack>
                 </Radio.Group>
             </Group>
