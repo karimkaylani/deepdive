@@ -13,20 +13,40 @@ export interface Filters {
     search: string,
     genres: string[],
     yearsRecommended: number[],
-    runtime: RuntimeFilter
+    runtime: RuntimeFilter,
+    recent: RecentFilter
+}
+
+export interface Sort {
+    sort: SortAttribute,
+    order: SortOrder
+}
+
+export enum SortOrder {
+    Ascending = "Ascending",
+    Descending = "Descending"
+}
+
+export enum SortAttribute {
+    Title = "Title",
+    Creator = "Creator",
+    Runtime = "Runtime",
+    DatePosted = "Date Posted",
+    DateRecommended = "Date Recommended"
 }
 
 export enum RuntimeFilter {
-    All = "All",
-    Short = "Short",
-    Medium = "Medium",
-    Long = "Long"
+    Any = "Any",
+    Short = "Short (20 minutes or less)",
+    Medium = "Medium (20-45 minutes)",
+    Long = "Long (45 minutes +)"
 }
 
 export enum RecentFilter {
-    All = "All",
-    Recent = "Last 30 Days",
-    Old = "Old"
+    Any = "Any",
+    Short = "Last 30 Days",
+    Medium = "Last 6 Months",
+    Long = "Last Year"
 }
 
 export const primaryColor = "#eef4ff";

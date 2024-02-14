@@ -1,0 +1,114 @@
+import { Chip, Group, Stack, TextInput, Text, Radio, Select, Title, Button } from '@mantine/core'
+import { IconSearch } from '@tabler/icons-react'
+import { useContext, useState } from 'react'
+import { FilterContext } from './Home'
+import { RecentFilter, RuntimeFilter, SortAttribute, SortOrder, secondaryColor } from '../globals';
+
+export interface SearchFilterSortProps {
+    allGenres: string[];
+}
+
+const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
+    const icon = <IconSearch/>
+    const [runtimeValue, setRuntimeValue] = useState<RuntimeFilter>(RuntimeFilter.Any)
+    const [recentValue, setRecentValue] = useState<RecentFilter>(RecentFilter.Any)
+
+    const [sortValue, setSortValue] = useState<SortAttribute>(SortAttribute.DateRecommended)
+    const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.Descending)
+    const {filters: {filters, setFilters}, sort: {sort, setSort}} = useContext(FilterContext);
+
+    const handleSearchTextChange = (query: string) => {
+        setFilters({...filters, search: query})
+    }
+
+    const handleRuntimeChange = (value: RuntimeFilter) => {
+        setRuntimeValue(value)
+        setFilters({...filters, runtime: value})
+    }
+
+    const handleRecentChange = (value: RecentFilter) => {
+        setRecentValue(value)
+        setFilters({...filters, recent: value})
+    }
+
+    const handleSortAttributeChange = (value: SortAttribute) => {
+        setSortValue(value)
+        setSort({sort: value, order: sortOrder})
+    }
+
+    const handleSortOrderChange = (value: SortOrder) => {
+        setSortOrder(value)
+        setSort({sort: sortValue, order: value})
+    }
+
+
+  return (
+    <Stack align='center' w='100%'>
+        <TextInput size='lg' radius='md' w='75%'
+            leftSection={icon}
+            placeholder="Search video title, creator, etc."
+            onChange={(event) => handleSearchTextChange(event.currentTarget.value)}
+        />
+        <Stack align='center'>
+            <Title fw={500} order={3}>FILTER</Title>
+            <Group>
+                {allGenres.map((genre) => 
+                    <Chip c={secondaryColor} key={genre} onChange={() => 
+                        setFilters({...filters, 
+                            genres: filters.genres.includes(genre) ? filters.genres.filter((g) => g !== genre) : [...filters.genres, genre]})}>
+                        {genre}
+                    </Chip>)}
+            </Group>
+
+            <Group justify='center'>
+                <Radio.Group
+                    name="runtimeFilter"
+                    label="Runtime"
+                    value={runtimeValue}
+                    onChange={handleRuntimeChange}>
+                    <Stack className='mt-3'>
+                        <Radio value={RuntimeFilter.Any} label={RuntimeFilter.Any}/>
+                        <Radio value={RuntimeFilter.Short} label={RuntimeFilter.Short}/>
+                        <Radio value={RuntimeFilter.Medium} label={RuntimeFilter.Medium}/>
+                        <Radio value={RuntimeFilter.Long} label={RuntimeFilter.Long}/>
+                    </Stack>
+                </Radio.Group>
+
+                <Radio.Group
+                    name="recentFilter"
+                    label="Video Release Date"
+                    value={recentValue}
+                    onChange={handleRecentChange}>
+                    <Stack className='mt-3'>
+                        <Radio value={RecentFilter.Any} label={RecentFilter.Any}/>
+                        <Radio value={RecentFilter.Short} label={RecentFilter.Short}/>
+                        <Radio value={RecentFilter.Medium} label={RecentFilter.Medium}/>
+                        <Radio value={RecentFilter.Long} label={RecentFilter.Long}/>
+                    </Stack>
+                </Radio.Group>
+            </Group>
+            <Title fw={500} order={3}>SORT</Title>
+            <Group>
+                <Select
+                    placeholder="Sort by"
+                    data={Object.values(SortAttribute)}
+                    allowDeselect={false}
+                    onChange={handleSortAttributeChange}
+                    value={sortValue}
+                />
+                <Radio.Group
+                    name="sortOrder"
+                    value={sortOrder}
+                    onChange={handleSortOrderChange}>
+                    <Stack className='mt-3'>
+                        <Radio value={SortOrder.Ascending} label={SortOrder.Ascending}/>
+                        <Radio value={SortOrder.Descending} label={SortOrder.Descending}/>
+                    </Stack>
+                </Radio.Group>
+            </Group>
+        </Stack>
+    </Stack>
+  )
+}
+
+export default SearchFilterSort

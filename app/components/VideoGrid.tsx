@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Filters, RuntimeFilter, Video } from '../globals'
+import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video } from '../globals'
 import { SimpleGrid, Stack, Text } from '@mantine/core';
 import VideoCard from './VideoCard';
 import { FilterContext } from './Home';
@@ -36,18 +36,60 @@ const shouldShowVideo = (vid: Video, filters: Filters) => {
     return false;
   }
   const lengthInMinutes = runtimeToMinutes(vid.length);
-  if (filters.runtime !== RuntimeFilter.All) {
-    if (filters.runtime === RuntimeFilter.Short && lengthInMinutes > 15) {
+  if (filters.runtime !== RuntimeFilter.Any) {
+    if (filters.runtime === RuntimeFilter.Short && lengthInMinutes > 20) {
       return false;
     }
-    if (filters.runtime === RuntimeFilter.Medium && (lengthInMinutes <= 15 || lengthInMinutes > 45)) {
+    if (filters.runtime === RuntimeFilter.Medium && (lengthInMinutes <= 20 || lengthInMinutes > 45)) {
       return false;
     }
     if (filters.runtime === RuntimeFilter.Long && lengthInMinutes <= 45) {
       return false;
     }
   }
+
+  if (filters.recent !== RecentFilter.Any) {
+    const videoDate = new Date(vid.date);
+    const now = new Date();
+    const oneDay = 24 * 60 * 60 * 1000;
+    if (filters.recent === RecentFilter.Short && videoDate < new Date(now.getTime() - 30 * oneDay)) {
+      return false;
+    }
+    if (filters.recent === RecentFilter.Medium && videoDate < new Date(now.getTime() - 180 * oneDay)) {
+      return false;
+    }
+    if (filters.recent === RecentFilter.Long && videoDate < new Date(now.getTime() - 365 * oneDay)) {
+      return false;
+    }
+  }
   return true;
+}
+
+const sortVideos = (videos: Video[], sort: Sort) => {
+
+  if (sort.sort === SortAttribute.DateRecommended) {
+    if (sort.order === SortOrder.Ascending) {
+      return videos.reverse()
+    } else {
+      return videos
+    }
+  }
+
+  return videos.sort((a, b) => {
+    if (sort.sort === SortAttribute.Title) {
+      return sort.order === SortOrder.Ascending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+    }
+    if (sort.sort === SortAttribute.Creator) {
+      return sort.order === SortOrder.Ascending ? a.creator.localeCompare(b.creator) : b.creator.localeCompare(a.creator);
+    }
+    if (sort.sort === SortAttribute.Runtime) {
+      return sort.order === SortOrder.Ascending ? runtimeToMinutes(a.length) - runtimeToMinutes(b.length) : runtimeToMinutes(b.length) - runtimeToMinutes(a.length);
+    }
+    if (sort.sort === SortAttribute.DatePosted) {
+      return sort.order === SortOrder.Ascending ? new Date(a.date).getTime() - new Date(b.date).getTime() : new Date(b.date).getTime() - new Date(a.date).getTime();
+    }
+    return 0;
+  });
 }
 
 export const getFilteredVideos = (videos: Video[], filters: Filters) => {
@@ -55,13 +97,14 @@ export const getFilteredVideos = (videos: Video[], filters: Filters) => {
 }
 
 const VideoGrid = ({videos}: VideoGridProps) => {
-  const {filters} = useContext(FilterContext);
+  const {filters: {filters}, sort: {sort}} = useContext(FilterContext);
   const filteredVideos = getFilteredVideos(videos, filters);
+  const sortedVideos = sortVideos(filteredVideos, sort);
   return (
     <Stack>
       <Text>Found {filteredVideos.length} videos</Text>
       <SimpleGrid cols={{ base: 2, xs: 3, sm: 3, lg: 4 }}>
-          {filteredVideos.map((video) => 
+          {sortedVideos.map((video) => 
               <VideoCard key={video.title} video={video}/>
           )}
       </SimpleGrid>

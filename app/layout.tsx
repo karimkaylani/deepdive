@@ -21,7 +21,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={{ fontFamily: 'Inter, sans-serif', headings: {fontFamily: 'Verdana, sans-serif'} }}
+        <MantineProvider theme={{ fontFamily: 'Inter, sans-serif', headings: {fontFamily: 'Poppins, sans-serif'} }}
         defaultColorScheme='light'>
           {children}
         </MantineProvider>
