@@ -4,6 +4,7 @@ import { Loader, SimpleGrid, Stack, Text } from '@mantine/core';
 import VideoCard from './VideoCard';
 import { FilterContext } from './Home';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import FlipMove from 'react-flip-move';
 
 export interface VideoGridProps {
     videos: Video[];
@@ -97,7 +98,7 @@ export const getFilteredVideos = (videos: Video[], filters: Filters) => {
   return videos.filter(video => shouldShowVideo(video, filters));
 }
 
-const VideoGrid = ({videos}: VideoGridProps) => {
+function VideoGrid({videos}: VideoGridProps) {
   const {filters: {filters}, sort: {sort}} = useContext(FilterContext);
   const filteredVideos = getFilteredVideos(videos, filters);
   const sortedVideos = sortVideos(filteredVideos, sort);
@@ -114,11 +115,11 @@ const VideoGrid = ({videos}: VideoGridProps) => {
           hasMore={sortedVideos.length > currentVideos.length}
           loader={null}>
       <SimpleGrid cols={{ base: 2, xs: 3, sm: 3, lg: 4 }}>
-     
-            {currentVideos.map((video) => 
+          {currentVideos.map((video) => 
+              <FlipMove key='flip'>
                 <VideoCard key={video.title} video={video}/>
-            )}
-        
+              </FlipMove>
+          )}
       </SimpleGrid>
       </InfiniteScroll>
     </Stack>

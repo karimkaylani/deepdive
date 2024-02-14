@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import { Video, secondaryColor } from '../globals';
 import { Badge, Card, Image as MantineImage, Group, Text, Loader, Center, Anchor } from '@mantine/core';
 
@@ -7,7 +7,7 @@ export interface VideoCardProps {
     video: Video;
 }
 
-const VideoCard = ({video}: VideoCardProps) => {
+const VideoCard = forwardRef<HTMLDivElement, VideoCardProps>(({video}: VideoCardProps, ref) => {
   const [loading, setLoading] = useState(true);
   const [thumbnail, setThumbnail] = useState(video.thumbnail);
 
@@ -27,7 +27,7 @@ const VideoCard = ({video}: VideoCardProps) => {
 
   return (
   <Anchor href={video.url} target='_blank' c={secondaryColor}>
-  <Card shadow="sm" padding="lg" radius="md" withBorder>
+  <Card ref={ref} shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
         {loading ? 
         <Center>
@@ -58,6 +58,6 @@ const VideoCard = ({video}: VideoCardProps) => {
     </Card>
     </Anchor>
   )
-}
+})
 
 export default VideoCard
