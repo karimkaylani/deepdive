@@ -7,6 +7,15 @@ export interface VideoCardProps {
     video: Video;
 }
 
+const formatLength = (length: string) => {
+  const [hours, minutes, seconds] = length.split(':');
+  if (parseInt(hours) === 0) {
+    return `${minutes}:${seconds}`
+  }
+  return `${hours}:${minutes}:${seconds}`
+
+}
+
 const VideoCard = forwardRef<HTMLDivElement, VideoCardProps>(({video}: VideoCardProps, ref) => {
   const [loading, setLoading] = useState(true);
   const [thumbnail, setThumbnail] = useState(video.thumbnail);
@@ -53,7 +62,7 @@ const VideoCard = forwardRef<HTMLDivElement, VideoCardProps>(({video}: VideoCard
       <Text fw={500}>By {video.creator}</Text>
 
       <Text size="sm" c="dimmed">
-        {video.length} | {video.date}
+        {formatLength(video.length)} | {video.date}
       </Text>
     </Card>
     </Anchor>

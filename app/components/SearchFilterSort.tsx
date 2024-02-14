@@ -1,4 +1,4 @@
-import { Chip, Group, Stack, TextInput, Radio, Select, Title, Button, Collapse, Badge } from '@mantine/core'
+import { Chip, Group, Stack, TextInput, Radio, Select, Title, Text, Collapse, Badge } from '@mantine/core'
 import { IconSearch, IconArrowDown, IconArrowUp } from '@tabler/icons-react'
 import { useContext, useState } from 'react'
 import { FilterContext } from './Home'
@@ -79,14 +79,16 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
             onChange={(event) => handleSearchTextChange(event.currentTarget.value)}
         />
         <Stack align='center' gap='lg'>
-            <Group>
+            <Group justify='center'>
             <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
                 {genresList.slice(0, expanded ? allGenres.length : 8).map((genre) => 
                     <Chip c={secondaryColor} key={genre} value={genre}>
                         {genre}
                     </Chip>)}
             </Chip.Group>
-            {allGenres.length > collapsedGenreCount && <Chip variant='outline' checked={false} onClick={expanded ? expandedHandlers.close : expandedHandlers.open}>{expanded ? "Collapse" : "+"}</Chip>}
+            {allGenres.length > collapsedGenreCount && <Chip variant='outline' checked={false} onClick={expanded ? expandedHandlers.close : expandedHandlers.open}>
+                <Text size='23px'>{expanded ? "-" : "+"}</Text>
+            </Chip>}
             </Group>
 
             <Group onClick={toggleFilter} style={{cursor: 'pointer', userSelect: 'none'}}>
@@ -129,7 +131,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                 {sortOpened ? <IconArrowUp/> : <IconArrowDown/>}
             </Group>
             <Collapse in={sortOpened}>
-            <Group align='center' justify='center'>
+            <Group justify='center' align='center'>
                 <Select
                     placeholder="Sort by"
                     data={Object.values(SortAttribute)}
