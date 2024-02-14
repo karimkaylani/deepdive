@@ -17,7 +17,6 @@ export interface iFilterContext {
 let defaultFilters: Filters = {
   search: '',
   genres: [],
-  yearsRecommended: [],
   runtime: RuntimeFilter.Any,
   recent: RecentFilter.Any
 }
