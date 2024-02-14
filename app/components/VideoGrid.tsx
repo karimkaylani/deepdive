@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video } from '../globals'
-import { SimpleGrid, Stack, Text } from '@mantine/core';
+import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video, secondaryColor } from '../globals'
+import { Loader, SimpleGrid, Stack, Text } from '@mantine/core';
 import VideoCard from './VideoCard';
 import { FilterContext } from './Home';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export interface VideoGridProps {
     videos: Video[];
@@ -100,14 +101,26 @@ const VideoGrid = ({videos}: VideoGridProps) => {
   const {filters: {filters}, sort: {sort}} = useContext(FilterContext);
   const filteredVideos = getFilteredVideos(videos, filters);
   const sortedVideos = sortVideos(filteredVideos, sort);
+  const videoLoadInterval = 25;
+
+  const [lastLoadedVideoIndex, setLastLoadedVideoIndex] = React.useState(Math.min(videoLoadInterval, sortedVideos.length));
+  let currentVideos = sortedVideos.slice(0, lastLoadedVideoIndex);
   return (
     <Stack>
       <Text>Found {filteredVideos.length} videos</Text>
+      <InfiniteScroll 
+          dataLength={currentVideos.length}
+          next={() => setLastLoadedVideoIndex(lastLoadedVideoIndex + videoLoadInterval)}
+          hasMore={sortedVideos.length > currentVideos.length}
+          loader={null}>
       <SimpleGrid cols={{ base: 2, xs: 3, sm: 3, lg: 4 }}>
-          {sortedVideos.map((video) => 
-              <VideoCard key={video.title} video={video}/>
-          )}
+     
+            {currentVideos.map((video) => 
+                <VideoCard key={video.title} video={video}/>
+            )}
+        
       </SimpleGrid>
+      </InfiniteScroll>
     </Stack>
   )
 }
