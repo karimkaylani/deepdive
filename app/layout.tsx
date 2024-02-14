@@ -8,13 +8,23 @@ import { Poppins, Fira_Sans } from 'next/font/google'
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
 export const metadata = {
-  title: 'DeepDive',
-  description: 'Test Description',
+  title: 'Deep Dive Searchable Playlist',
+  description: 'Search, filter, & sort all of the Deep Dive recommendations in one place.',
 };
 
-const poppins = Poppins({weight: ["400", "500", "600", "700", "800", "900"]})
+const poppins = Poppins(
+  {
+    weight: ["400", "500", "600", "700", "800", "900"], 
+    subsets: ["latin"]
+  }
+)
 
-const firaSans = Fira_Sans({weight: ["400", "500", "600", "700", "800", "900"]})
+const firaSans = Fira_Sans(
+  {
+    weight: ["400", "500", "600", "700", "800", "900"], 
+    subsets: ["latin"]
+  }
+)
 
 export default function RootLayout({
   children,
