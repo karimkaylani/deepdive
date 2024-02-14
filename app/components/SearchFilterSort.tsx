@@ -54,6 +54,8 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
         setFilters({...filters, genres: value})
     }
 
+    const genresList = selectedGenres.concat(allGenres.filter(genre => !selectedGenres.includes(genre)));
+
 
   return (
     <Stack align='center' w='100%'>
@@ -65,7 +67,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
         <Stack align='center' gap='lg'>
             <Group>
             <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
-                {allGenres.slice(0, expanded ? allGenres.length : 8).map((genre) => 
+                {genresList.slice(0, expanded ? allGenres.length : 8).map((genre) => 
                     <Chip c={secondaryColor} key={genre} value={genre}>
                         {genre}
                     </Chip>)}
