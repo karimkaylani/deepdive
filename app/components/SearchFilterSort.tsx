@@ -114,7 +114,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
                 {sortOpened ? <IconArrowUp/> : <IconArrowDown/>}
             </Group>
             <Collapse in={sortOpened}>
-            <Group>
+            <Group align='center' justify='center'>
                 <Select
                     placeholder="Sort by"
                     data={Object.values(SortAttribute)}
