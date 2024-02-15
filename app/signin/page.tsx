@@ -30,7 +30,9 @@ export default function Page() {
         setLoading(false)
     }
     return (
-        <Stack align='center' className='mt-14'>
+        <Stack align='center' className='mt-14' gap='lg'>
+            <Title order={2}>Sign in</Title>
+            <Text ta='center' w={'500px'}>Sign in to with your beehiiv email to gain access to the playlist. You must have have a Premium tier subscription to The Deep Dive newsletter</Text>
             <TextInput type='email' error={error} value={email} onChange={(event) => setEmail(event.target.value)} w={{base: '65%', sm: '50%', md: '35%'}} label="Your beehiiv email" leftSection={<IconAt />} />
             <Button size='lg' radius='lg' variant="filled" style={{backgroundColor: secondaryColor}}
                 onClick={handleSignInClick}>
