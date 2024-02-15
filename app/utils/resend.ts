@@ -1,6 +1,6 @@
 import { SendVerificationRequestParams } from "next-auth/providers"
 import { Resend } from "resend"
-import SignInEmail from "../emails/signin"
+import SignInEmail from "../components/emails/signin"
 
 export const sendVerificationRequest = async (params: SendVerificationRequestParams) => {
     const { identifier, url, provider, theme } = params

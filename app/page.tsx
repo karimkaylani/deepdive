@@ -8,7 +8,7 @@ import { authOptions } from "./api/auth/[...nextauth]/options";
 export default async function Page() {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {
-    redirect('/signin')
+    redirect('/sign-in')
   }
   const videos: Video[] = await getCachedVideos();
   return (

@@ -19,6 +19,7 @@ export const authOptions: NextAuthOptions = {
         emailProvider
     ],
     pages: {
-        signIn: '/signin'
+        signIn: '/sign-in',
+        verifyRequest: '/verify'
     }
 }
