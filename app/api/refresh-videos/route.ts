@@ -6,8 +6,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user) {
-        redirect('/sign-in')
+    const adminEmails = process.env.ADMIN_EMAILS.split(',')
+    if (!session || !session.user || !adminEmails.includes(session.user.email)) {
+        redirect('/')
     }
     revalidateTag('videos')
     return NextResponse.json({message: 'test', success: true})
