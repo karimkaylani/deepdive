@@ -25,7 +25,6 @@ export default function SignInInput() {
         }
         setError('')
         signIn('resend', {email: email, callbackUrl: '/'})
-        setLoading(false)
     }
     return (
         <Stack align='center' className='mt-14' gap='lg'>
