@@ -10,7 +10,7 @@ export default async function Page() {
   if (!session || !session.user) {
     redirect('/sign-in')
   }
-  const videos: Video[] = await getVideos();
+  const videos: Video[] = await getCachedVideos();
   return (
     <Home videos={videos}/>
   )

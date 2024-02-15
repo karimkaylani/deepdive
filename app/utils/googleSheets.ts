@@ -2,9 +2,10 @@ import {google} from 'googleapis';
 import { Video } from '../types';
 import { unstable_cache } from 'next/cache';
 
-export const getCachedVideos = unstable_cache(getVideos, ['videos'], {revalidate: 1800});
+export const getCachedVideos = unstable_cache(getVideos, ['videos'], {tags: ['videos'], revalidate: 86400});
 
 export async function getVideos() {
+    console.log('Fetching videos');
     const credential = JSON.parse(
         Buffer.from(process.env.GOOGLE_SERVICE_KEY, "base64").toString()
     );
