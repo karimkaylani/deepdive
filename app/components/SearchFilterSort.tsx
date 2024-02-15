@@ -107,12 +107,12 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
             <Group justify='center' style={{maxWidth: '850px'}}>
             <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
                 {genresList.slice(0, expanded ? allGenres.length : 8).map((genre) => 
-                    <Chip color={primaryColor} key={genre} value={genre}>
+                    <Chip variant='outline' color={primaryColor} key={genre} value={genre}>
                         {genre}
                     </Chip>)}
             </Chip.Group>
             {allGenres.length > collapsedGenreCount && 
-                <Chip variant='outline' checked={false} onClick={expanded ? expandedHandlers.close : expandedHandlers.open}>
+                <Chip checked={false} onClick={expanded ? expandedHandlers.close : expandedHandlers.open}>
                     <Text size='23px'>{expanded ? "-" : "+"}</Text>
                 </Chip>
             }
