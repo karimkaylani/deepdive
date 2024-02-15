@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { getCachedVideos } from "./actions";
+import { getCachedVideos } from "./utils/googleSheets";
 import Home from "./components/Home";
 import {Video} from './globals';
 import { redirect } from "next/navigation";

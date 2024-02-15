@@ -36,7 +36,7 @@ const Home = ({videos}: MainProps) => {
     const [sort, setSort] = useState<Sort>(defaultSort);
     return (
     <Center>
-        <Flex className='mb-10' direction='column' gap='lg' w='90%' justify='center' align='center'>
+        <Flex className='mt-10 mb-10' direction='column' gap='lg' w='90%' justify='center' align='center'>
         <FilterContext.Provider value={{filters: {filters, setFilters}, sort: {sort, setSort}}}>
             <SearchFilterSort allGenres={getAllGenres(getFilteredVideos(videos, filters))}/>
             <VideoGrid videos={videos}/>

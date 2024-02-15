@@ -2,7 +2,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import NextAuth, { AuthOptions } from "next-auth"
 import { Provider } from "next-auth/providers"
-import { sendVerificationRequest } from "../../../utils/sendVerificationRequest"
+import { sendVerificationRequest } from "../../../utils/resend"
 
 export const prisma = new PrismaClient()
 
@@ -17,7 +17,10 @@ export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         emailProvider
-    ]
+    ],
+    pages: {
+        signIn: '/signin'
+    }
 }
 
 export const handler = NextAuth(authOptions)
