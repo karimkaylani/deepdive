@@ -1,8 +1,15 @@
+import { getServerSession } from "next-auth";
 import { getCachedVideos } from "./actions";
 import Home from "./components/Home";
 import {Video} from './globals';
+import { redirect } from "next/navigation";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export default async function Page() {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user) {
+    redirect('/api/auth/signin')
+  }
   const videos: Video[] = await getCachedVideos();
   return (
     <Home videos={videos}/>
