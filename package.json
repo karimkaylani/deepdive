@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "email": "email dev --dir app/emails"
+    "email": "email dev --dir app/emails",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@mantine/core": "^7.5.2",
