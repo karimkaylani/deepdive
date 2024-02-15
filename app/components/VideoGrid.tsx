@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video, secondaryColor } from '../globals'
+import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video } from '../types'
 import { Loader, SimpleGrid, Stack, Text } from '@mantine/core';
 import VideoCard from './VideoCard';
 import { FilterContext } from './Home';

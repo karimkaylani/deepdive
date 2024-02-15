@@ -4,5 +4,6 @@
 
 
 body {
-  background-color: var(--primary-color);
+  background-color: #eef4ff;
+  padding: 15px;
 }

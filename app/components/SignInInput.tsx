@@ -3,8 +3,8 @@ import { Stack, Title, TextInput, Text, Button, Anchor } from "@mantine/core";
 import { IconAt } from "@tabler/icons-react";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { secondaryColor } from "../globals";
 import { isBeehiivPremium } from "../utils/beehiiv";
+import { primaryColor } from "../colors";
 
 function isValidEmail(email: string) {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,7 +33,7 @@ export default function SignInInput() {
             <TextInput type='email' error={error} value={email} onChange={(event) => setEmail(event.target.value)} 
                 style={{maxWidth: '450px'}} w={{base: '65%', sm: '50%', md: '35%', lg: '%20'}} 
                 label="Your email" leftSection={<IconAt />} />
-            <Button size='lg' radius='lg' variant="filled" style={{backgroundColor: secondaryColor}}
+            <Button size='lg' radius='lg' variant="filled" style={{backgroundColor: primaryColor}}
                 onClick={handleSignInClick}>
                 Sign In
             </Button>

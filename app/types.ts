@@ -47,6 +47,3 @@ export enum RecentFilter {
     Medium = "Last 6 Months",
     Long = "Last Year"
 }
-
-export const primaryColor = "#eef4ff";
-export const secondaryColor = "#174086";

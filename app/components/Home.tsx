@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 import SearchFilterSort from "./SearchFilterSort";
 import VideoGrid, { getAllGenres, getFilteredVideos } from "./VideoGrid";
 import {Center, Flex, Title, Image} from '@mantine/core';
-import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video, secondaryColor } from "../globals";
+import { Filters, RecentFilter, RuntimeFilter, Sort, SortAttribute, SortOrder, Video } from "../types";
 
 export interface MainProps {
     videos: Video[];

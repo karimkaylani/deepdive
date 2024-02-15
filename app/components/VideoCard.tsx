@@ -1,7 +1,8 @@
 'use client'
 import React, { forwardRef, useEffect, useState } from 'react'
-import { Video, secondaryColor } from '../globals';
+import { Video,  } from '../types';
 import { Badge, Card, Image as MantineImage, Group, Text, Loader, Center, Anchor } from '@mantine/core';
+import { primaryColor } from '../colors';
 
 export interface VideoCardProps {
     video: Video;
@@ -35,12 +36,12 @@ const VideoCard = forwardRef<HTMLDivElement, VideoCardProps>(({video}: VideoCard
   }, [])
 
   return (
-  <Anchor href={video.url} target='_blank' c={secondaryColor}>
+  <Anchor href={video.url} target='_blank' c={primaryColor}>
   <Card ref={ref} shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
         {loading ? 
         <Center>
-          <Loader c={secondaryColor}/>
+          <Loader c={primaryColor}/>
         </Center>
         : 
         <MantineImage
@@ -54,7 +55,7 @@ const VideoCard = forwardRef<HTMLDivElement, VideoCardProps>(({video}: VideoCard
         <Text fw={500}>{video.title}</Text>
         <Group>
           {video.genre.map((genre, index) => 
-          genre !== "N/A" && <Badge key={index} color={secondaryColor}>{genre}</Badge>
+          genre !== "N/A" && <Badge key={index} color={primaryColor}>{genre}</Badge>
           )}
         </Group>
       </Group>
