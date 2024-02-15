@@ -11,5 +11,5 @@ export async function GET() {
         redirect('/')
     }
     revalidateTag('videos')
-    return NextResponse.json({message: 'test', success: true})
+    return NextResponse.json({message: 'Updated video catalog', success: true})
 }
