@@ -9,7 +9,7 @@ import { ColorSchemeScript, MantineProvider, Title, Image, Stack } from '@mantin
 import { secondaryColor } from './globals';
 import { getServerSession } from 'next-auth';
 import SessionProvider from './components/SessionProvider';
-import { authOptions } from './api/auth/[...nextauth]/route';
+import { authOptions } from './api/auth/[...nextauth]/options';
 
 export const metadata = {
   title: 'Searchable Playlist',

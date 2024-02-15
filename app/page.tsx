@@ -3,7 +3,7 @@ import { getCachedVideos } from "./utils/googleSheets";
 import Home from "./components/Home";
 import {Video} from './globals';
 import { redirect } from "next/navigation";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "./api/auth/[...nextauth]/options";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
