@@ -4,6 +4,9 @@
 
 
 body {
-  background-color: #eef4ff;
-  padding: 15px;
+  background-color: #eef4ff; 
+}
+
+main {
+  padding: 0px 15px 0px 15px;
 }

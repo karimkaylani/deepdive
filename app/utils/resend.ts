@@ -9,7 +9,7 @@ export const sendVerificationRequest = async (params: SendVerificationRequestPar
         await resend.emails.send({
             from: 'no-reply@playlist.deepdivenewsletter.com',
             to: identifier,
-            subject: 'Sign in to The Deep Dive Playlist',
+            subject: 'Get Access to The Deep Dive Searchable Playlist',
             text: text({url}),
             react: SignInEmail({signInUrl: url})
         })
