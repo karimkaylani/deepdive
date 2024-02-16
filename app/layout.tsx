@@ -45,7 +45,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
         <MantineProvider theme={{ fontFamily: firaSans.style.fontFamily, headings: {fontFamily: poppins.style.fontFamily} }}
         defaultColorScheme='light'>
-          <Paper w={'100%'} p='lg' bg={secondaryColor} radius='0px'>
+          <Paper w={'100%'} p='md' bg={secondaryColor} radius='0px'>
             <Group justify='center'>
               <Anchor target='_blank' c={primaryColor} href='https://www.deepdivenewsletter.com/'><Text size='sm' c='white'>The Deep Dive Homepage</Text></Anchor>
             </Group>
