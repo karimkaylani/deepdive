@@ -15,5 +15,4 @@ export const isBeehiivPremium = async(email: string) => {
     const json = await res.json()
     const data = json['data']
     return data['status'] === 'active' && data['subscription_tier'] === 'premium'
-    // return data['status'] === 'active'
 }
