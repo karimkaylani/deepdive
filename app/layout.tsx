@@ -47,7 +47,7 @@ export default async function RootLayout({
         defaultColorScheme='light'>
           <Paper w={'100%'} p='lg' bg={'#141f4a'} radius='0px'>
             <Group justify='center'>
-              <Anchor c={primaryColor} href='https://www.deepdivenewsletter.com/'><Text size='sm' c='white'>The Deep Dive Homepage</Text></Anchor>
+              <Anchor target='_blank' c={primaryColor} href='https://www.deepdivenewsletter.com/'><Text size='sm' c='white'>The Deep Dive Homepage</Text></Anchor>
             </Group>
           </Paper>
           <main>
