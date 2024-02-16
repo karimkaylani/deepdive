@@ -9,7 +9,7 @@ import { ColorSchemeScript, MantineProvider, Title, Image, Stack, Paper, Group, 
 import { getServerSession } from 'next-auth';
 import SessionProvider from './components/SessionProvider';
 import { authOptions } from './api/auth/[...nextauth]/options';
-import { primaryColor } from './colors';
+import { primaryColor, secondaryColor } from './colors';
 
 export const metadata = {
   title: 'Searchable Playlist',
@@ -45,7 +45,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
         <MantineProvider theme={{ fontFamily: firaSans.style.fontFamily, headings: {fontFamily: poppins.style.fontFamily} }}
         defaultColorScheme='light'>
-          <Paper w={'100%'} p='lg' bg={'#141f4a'} radius='0px'>
+          <Paper w={'100%'} p='lg' bg={secondaryColor} radius='0px'>
             <Group justify='center'>
               <Anchor target='_blank' c={primaryColor} href='https://www.deepdivenewsletter.com/'><Text size='sm' c='white'>The Deep Dive Homepage</Text></Anchor>
             </Group>
@@ -53,7 +53,7 @@ export default async function RootLayout({
           <main>
             <Stack className='mt-5' align='center'>
               <Image src={'logo.png'} w={150}/>
-              <Title ta='center' c={primaryColor} fw={650} order={1}>SEARCHABLE PLAYLIST</Title>
+              <Title ta='center' c={secondaryColor} fw={650} order={1}>SEARCHABLE PLAYLIST</Title>
             </Stack>
             {children}
           </main>
