@@ -19,5 +19,5 @@ export const sendVerificationRequest = async (params: SendVerificationRequestPar
 }
 
 function text({url}) {
-    return `Sign in to The Deep Dive Playlist by clicking the link below:\n\n${url}\n\n`
+    return `Sign in to The Deep Dive Searchable Playlist by clicking the link below:\n\n${url}\n\n`
 }

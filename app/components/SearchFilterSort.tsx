@@ -106,7 +106,7 @@ const SearchFilterSort = ({allGenres}: SearchFilterSortProps) => {
         <Stack align='center' gap='lg'>
             <Group justify='center' style={{maxWidth: '850px'}}>
             <Chip.Group multiple value={selectedGenres} onChange={handleSelectedGenre}>
-                {genresList.slice(0, expanded ? allGenres.length : 8).map((genre) => 
+                {genresList.slice(0, expanded ? allGenres.length : collapsedGenreCount).map((genre) => 
                     <Chip variant='outline' color={primaryColor} key={genre} value={genre}>
                         {genre}
                     </Chip>)}

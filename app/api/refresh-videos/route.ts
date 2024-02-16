@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../auth/[...nextauth]/options"
-import { redirect } from "next/navigation";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
