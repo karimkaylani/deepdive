@@ -53,7 +53,7 @@ export const SignInEmail = ({signInUrl}: SignInEmailProps) => {
               Sign in to The Deep Dive Playlist 
             </Heading>
 
-            <Section className="text-center">
+            <Section className="mt-10 text-center">
               <Button href={signInUrl} className="bg-brand text-white rounded-lg py-3 px-[18px]">
                 Click here to gain access to the playlist
               </Button>
