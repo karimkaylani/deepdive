@@ -17,12 +17,17 @@ export default function SignInInput() {
 
     const handleSignInClick = async () => {
         setLoading(true)
-        if (!isValidEmail(email) || !await isBeehiivPremium(email)) {
+        setError('')
+        if (!isValidEmail(email)) {
             setError('Invalid Email')
             setLoading(false)
             return
         }
-        setError('')
+        if (!await isBeehiivPremium(email)) {
+            setError('Email is not subscribed to The Rabbit Hole')
+            setLoading(false)
+            return
+        }
         signIn('resend', {email: email, callbackUrl: '/'})
     }
     return (
