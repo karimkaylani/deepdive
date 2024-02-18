@@ -2,6 +2,7 @@
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import "./globals.css"
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { Poppins, Fira_Sans } from 'next/font/google'
 
@@ -60,6 +61,7 @@ export default async function RootLayout({
         </MantineProvider>
         </SessionProvider>
       </body>
+      <GoogleAnalytics gaId="G-N6QEJ0PQE8" />
     </html>
   );
 }

@@ -11,6 +11,7 @@
     "@mantine/core": "^7.5.2",
     "@mantine/hooks": "^7.5.2",
     "@next-auth/prisma-adapter": "^1.0.7",
+    "@next/third-parties": "^14.1.0",
     "@prisma/client": "^5.9.1",
     "@react-email/components": "0.0.14",
     "@tabler/icons-react": "^2.47.0",
