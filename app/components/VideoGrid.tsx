@@ -12,7 +12,7 @@ export interface VideoGridProps {
 
 export const getAllGenres = (videos: Video[]) => {
   const genres = new Set<string>();
-  videos.forEach(video => video.genre.forEach(g => g!== 'N/A' && genres.add(g)));
+  videos.forEach(video => video.genre.forEach(g => g && g!== 'N/A' && genres.add(g)));
   return Array.from(genres).sort();
 }
 
