@@ -1,25 +1,25 @@
-# Welcome to Next.js
+# [Deep Dive Searchable Playlist](https://playlist.deepdivenewsletter.com/)
+Add-on to the [Deep Dive Newsletter](https://www.deepdivenewsletter.com/) which allows paid subscribers to **search, filter, and sort** all video essays recommended by the newsletter in one place! Uses magic link authentication from NextAuth and the beehiiv API to ensure users are properly authenticated before accessing the service. Videos are updated automatically using the Google Sheets API.
 
-This is the most minimal starter for your Next.js project.
+## Main Page
+![image](https://github.com/karimkaylani/deepdive/assets/19757304/5c682526-fea0-4b51-99d4-7ab0ebebf226)
 
-## Deploy your own
+## Sign-in Page
+![image](https://github.com/karimkaylani/deepdive/assets/19757304/f6ea4a0d-2f07-4eea-9137-bd888ffa6e3a)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/hello-world&project-name=hello-world&repository-name=hello-world)
+## Magic-Link Email
+![image](https://github.com/karimkaylani/deepdive/assets/19757304/19be08b8-cc23-402c-9adb-c3f1e7d58895)
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example hello-world hello-world-app
-```
-
-```bash
-yarn create next-app --example hello-world hello-world-app
-```
-
-```bash
-pnpm create next-app --example hello-world hello-world-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Techonologies Used:
+- Next.js
+- React
+- NextAuth
+- beehiiv API
+- Mantine
+- Tailwind CSS
+- Google Sheets API
+- Prisma
+- Supabase (Postgres)
+- Resend
+- Vercel
+- react-email
