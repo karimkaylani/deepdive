@@ -1,5 +1,5 @@
 # [Deep Dive Searchable Playlist](https://playlist.deepdivenewsletter.com/)
-Add-on to the [Deep Dive Newsletter](https://www.deepdivenewsletter.com/) which allows paid subscribers to **search, filter, and sort** all video essays recommended by the newsletter in one place! Uses magic link authentication from NextAuth and the beehiiv API to ensure users are properly authenticated before accessing the service. Videos are updated automatically using the Google Sheets API.
+Web-app for the [Deep Dive Newsletter](https://www.deepdivenewsletter.com/) which allows paid subscribers to **search, filter, and sort** all video essays recommended by the newsletter in one place! Uses magic link authentication from NextAuth and the beehiiv API to ensure users are properly authenticated before accessing the service. Videos are updated automatically using the Google Sheets API.
 
 ## Main Page
 ![image](https://github.com/karimkaylani/deepdive/assets/19757304/5c682526-fea0-4b51-99d4-7ab0ebebf226)
