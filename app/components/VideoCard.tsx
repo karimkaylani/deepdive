@@ -55,7 +55,7 @@ const VideoCard = forwardRef<HTMLDivElement, VideoCardProps>(({video}: VideoCard
         <Text fw={500}>{video.title}</Text>
         <Group>
           {video.genre.map((genre, index) => 
-            genre && <Badge key={index} color={primaryColor}>{genre}</Badge>
+            <Badge key={index} color={primaryColor}>{genre}</Badge>
           )}
         </Group>
       </Group>

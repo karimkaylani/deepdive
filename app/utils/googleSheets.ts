@@ -38,7 +38,7 @@ export async function getVideos() {
         videos.push({
             title: video[0],
             creator: video[1],
-            genre: [video[2], video[3], video[4]],
+            genre: [video[2], video[3], video[4]].filter((genre) => genre),
             length: video[5],
             date: video[6],
             url: video[7],
